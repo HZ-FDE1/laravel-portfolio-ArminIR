@@ -5,8 +5,8 @@
     <main>
 
         <div>
-            <p>FAQ ja</p>
-            <p>FAQ ja</p>
+        <p>FAQ testing</p>
+        <p>FAQ testing</p>
             <div>
 
                     <details>
