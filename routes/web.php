@@ -1,6 +1,14 @@
 <?php
 
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ArticlesController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GradesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +38,51 @@ Route::get('/posts/{post}',  function($post){
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/', [WelcomeController::class, 'show']);
+
+Route::get('/profile', [ProfileController::class, 'show']);
+
+Route::get('/dashboard', [DashboardController::class, 'show']);
+
+Route::get('/grades', [GradesController::class, 'index']);
+
+Route::get('/grades/{grade}', [GradesController::class, 'show']);
+
+//Route::get('/faq', [FaqController::class, 'index']);
+//Route::post('/faq', [FaqController::class, 'store']);
+//Route::get('/faq/create', [FaqController::class, 'create']);
+//Route::get('/faq/{faq}', [FaqController::class, 'show']);
+//Route::get('/faq/{faq}/edit', [FaqController::class, 'edit']);
+//Route::put('/faq/{faq}', [FaqController::class, 'update']);
+//Route::delete('/faq/{faq}', [FaqController::class, 'destroy']);
+
+//Route::get('/blog', [BlogController::class, 'show']);
+
+Route::get('/posts/{post}', [PostController::class, 'show']);
+//Route::post('/blog', [ArticlesController::class, 'store']);
+//Route::get('/blog/create', [ArticlesController::class, 'create']);
+//Route::get('/blog/{article}', [ArticlesController::class, 'show']);
+//Route::get('/blog/{article}/edit', [ArticlesController::class, 'edit']);
+//Route::put('/blog/{article}', [ArticlesController::class, 'update']);
+//Route::delete('/blog/{article}', [ArticlesController::class, 'destroy']);
+
+Route::resources([
+    'faqs' => FaqController::class,
+    'blogs' => ArticlesController::class,
+    'grades' => GradesController::class
+]);
+
+Route::get('/404', function () {
+    return view('404');
+});
+
+Route::get('/500', function () {
+    return view('500');
+});
+
+Route::get('/apitest', function () {
+    return view('apitest');
 });
